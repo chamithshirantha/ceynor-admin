@@ -3,6 +3,7 @@
 use App\Http\Controllers\FishingBoatController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PassengerBoatController;
+use App\Http\Controllers\ProjectController;
 use App\Models\FishingBoat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ Auth::routes(['register'=>false,'password.reset' => false, 'reset' => false]);
     
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//fishing boat routes
+//gallery routes
 
 Route::get('admin/gallery',[GalleryController::class, 'index'])->name('gallery');
 Route::post('admin/gallery',[GalleryController::class, 'store']);
@@ -27,6 +28,15 @@ Route::get('fetch-gallery', [GalleryController::class, 'fetchboat']);
 Route::get('edit-gallery/{id}', [GalleryController::class, 'edit']);
 Route::post('update-gallery/{id}', [GalleryController::class, 'update']);
 Route::delete('delete-gallery/{id}', [GalleryController::class, 'destory']);
+
+//gallery routes
+
+Route::get('admin/projects',[ProjectController::class, 'index'])->name('projects');
+Route::post('admin/projects',[ProjectController::class, 'store']);
+Route::get('fetch-projects', [ProjectController::class, 'fetchData']);
+Route::get('edit-projects/{id}', [ProjectController::class, 'edit']);
+Route::post('update-projects/{id}', [ProjectController::class, 'update']);
+Route::delete('delete-projects/{id}', [ProjectController::class, 'destory']);
 
 
 

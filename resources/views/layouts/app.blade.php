@@ -45,7 +45,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Projects</a>
+                            <a class="nav-link {{ 'admin/projects' == request()->path() ? 'active' : '' }}" href="{{ route('projects') }}">Projects</a>
                         </li>
 
                         <li class="nav-item">
