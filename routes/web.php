@@ -64,12 +64,12 @@ Route::delete('delete-passengerboats/{id}', [PassengerBoatController::class, 'de
 
 // news and feeds routes
 
-Route::get('admin/news&feeds',[NewsandFeedsController::class, 'index'])->name('news&feeds');
-Route::post('admin/news&feeds',[NewsandFeedsController::class, 'store']);
-Route::get('fetch-news&feeds', [NewsandFeedsController::class, 'fetchboat']);
-Route::get('edit-news&feeds/{id}', [NewsandFeedsController::class, 'edit']);
-Route::post('update-news&feeds/{id}', [NewsandFeedsController::class, 'update']);
-Route::delete('delete-news&feeds/{id}', [NewsandFeedsController::class, 'destory']);
+Route::get('admin/news-feeds',[NewsandFeedsController::class, 'index'])->name('news&feeds');
+Route::post('admin/news-feeds',[NewsandFeedsController::class, 'store']);
+Route::get('fetch-news-feeds', [NewsandFeedsController::class, 'fetchData']);
+Route::get('edit-news-feeds/{id}', [NewsandFeedsController::class, 'edit']);
+Route::post('update-news-feeds/{id}', [NewsandFeedsController::class, 'update']);
+Route::delete('delete-news-feeds/{id}', [NewsandFeedsController::class, 'destory']);
 
 
 

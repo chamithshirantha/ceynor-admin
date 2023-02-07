@@ -17,7 +17,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Gallery</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add News & Feeds</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -25,19 +25,34 @@
             <div class="modal-body">
                 <ul class="alert alert-warning d-none" id="save_errorList"></ul>
 
-                <form id="GalleryAddForm" class="row g-3" method="POST" enctype="multipart/form-data">
+                <form id="NewsAddForm" class="row g-3" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                <div class="col-md-6">
-                    <label class="form-label">Image Name</label>
-                    <input type="text" name="imagename" class="form-control">
+                <div class="col-md-8">
+                    <label class="form-label">Topic</label>
+                    <input type="text" name="newstopic" class="form-control">
                 </div>
 
+                <div class="col-md-4">
+                    <label for="image" class="form-label">Choose Image</label>
+                    <input class="form-control" type="file" name="image">
+                    <small class="form-text text-muted">Please choose image size</small>
+                  </div>
 
-                <div class="col-md-6">
-                  <label for="image" class="form-label">Choose Image</label>
-                  <input class="form-control" type="file" name="image">
-                  <small class="form-text text-muted">Please choose image size</small>
+
+                <div class="form-group">
+                    <label for="description">Description 01</label>
+                    <textarea class="form-control" name="description_1"  rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description 02</label>
+                    <textarea class="form-control" name="description_2"  rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description 03</label>
+                    <textarea class="form-control" name="description_3"  rows="4"></textarea>
                 </div>
 
                   
@@ -60,11 +75,11 @@
 
     <!-- edit Modal -->
                     
-    <div class="modal fade" id="GalleryEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="NewsEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Image Update</h5>
+              <h5 class="modal-title" id="exampleModalLabel">News & Feeds Update</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -72,20 +87,36 @@
             <div class="modal-body">
                 <ul class="alert alert-warning d-none" id="edit_errorList"></ul>
 
-                <form id="GalleryEditForm" class="row g-3" method="POST" enctype="multipart/form-data">
+                <form id="NewsEditForm" class="row g-3" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                <input type="hidden" id="g_e_image_id" name="g_e_image_id">
+                <input type="hidden" id="e_n_id" name="e_n_id">
 
-                <div class="col-md-6">
-                    <label class="form-label">Boat Name</label>
-                    <input type="text" name="g_e_imagename" id="g_e_imagename" class="form-control">
+                <div class="col-md-8">
+                    <label class="form-label">Topic</label>
+                    <input type="text" name="e_n_newstopic" id="e_n_newstopic" class="form-control">
                 </div>
 
+                <div class="col-md-4">
+                    <label for="image" class="form-label">Choose Image</label>
+                    <input class="form-control" type="file" name="e_n_image" id="e_n_image">
+                    <small class="form-text text-muted">Please choose image size</small>
+                  </div>
 
-                <div class="col-md-6">
-                  <label for="image" class="form-label">Choose Image</label>
-                  <input class="form-control" type="file" name="g_e_image" id="g_e_image">
+
+                <div class="form-group">
+                    <label for="description">Description 01</label>
+                    <textarea class="form-control" name="e_n_description_1"  id="e_n_description_1" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description 02</label>
+                    <textarea class="form-control" name="e_n_description_2" id="e_n_description_2"  rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description 03</label>
+                    <textarea class="form-control" name="e_n_description_3" id="e_n_description_3" rows="4"></textarea>
                 </div>
 
                 
@@ -105,11 +136,11 @@
 
     <!-- view Modal Start-->
                     
-    <div class="modal fade" id="GalleryViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="NewsViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">View Passenger Boat Details</h5>
+              <h5 class="modal-title" id="exampleModalLabel">View News & Feeds Details</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -117,24 +148,37 @@
             <div class="modal-body">
                 <ul class="alert alert-warning d-none" id="edit_errorList"></ul>
 
-                <form id="GalleryBoatViewForm" class="row g-3" method="POST" enctype="multipart/form-data">
+                {{-- <form id="GalleryBoatViewForm" class="row g-3" method="POST" enctype="multipart/form-data"> --}}
                     @csrf
 
-                <input type="hidden"  name="g_v_image_id">
+                <input type="hidden" id="v_n_id" name="v_n_id" disabled>
 
-                <div class="col-md-6">
-                    <label class="form-label">Boat Name</label>
-                    <input type="text" name="g_v_imagename" class="form-control" disabled>
+                <div class="col-md-12">
+                    <label class="form-label">Topic</label>
+                    <input type="text" name="v_n_newstopic" id="v_n_newstopic" class="form-control" disabled>
                 </div>
 
-
-                <div class="col-md-6">
-                  <label for="image" class="form-label">Choose Image</label>
-                  {{-- <input class="form-control" type="file" name="g_v_image"> --}}
-
-                  <input type="hidden" name="g_v_image">
+                <div class="col-md-4">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="hidden" name="v_n_image" disabled>
                 
-                  <img src="" class="img-fluid"  name="g_v_image"  width="" height="100" disabled>
+                    <img src="" class="img-fluid"  name="v_n_image"  width="" height="100">
+                  </div>
+
+
+                <div class="form-group">
+                    <label for="description">Description 01</label>
+                    <textarea class="form-control" name="v_n_description_1"  id="v_n_description_1" rows="3" disabled></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description 02</label>
+                    <textarea class="form-control" name="v_n_description_2" id="v_n_description_2"  rows="5" disabled></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description 03</label>
+                    <textarea class="form-control" name="v_n_description_3" id="v_n_description_3" rows="4" disabled></textarea>
                 </div>
 
                 
@@ -158,7 +202,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Gallery</div> 
+                <div class="card-header">News & Feeds</div> 
                 <div class="card-body">
                     <!-- Table Start -->
                     <div class="container">
@@ -168,7 +212,7 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Image Name</th>
+                                                <th>Topic</th>
                                                 <th>Image</th>
                                                 <th colspan="3">Action</th>
                                             </tr>
@@ -211,14 +255,14 @@
         });
 
 
-        $(document).on('submit', '#GalleryAddForm', function (e) {
+        $(document).on('submit', '#NewsAddForm', function (e) {
             e.preventDefault();
 
-            let formData = new FormData($('#GalleryAddForm')[0]);
+            let formData = new FormData($('#NewsAddForm')[0]);
 
             $.ajax({
                 type: "POST",
-                url: "{{URL('/admin/gallery')}}",
+                url: "{{URL('/admin/news-feeds')}}",
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -233,11 +277,11 @@
                         $('#save_errorList').html("");
                         $('#save_errorList').addClass('d-none');
                         // this.reset();
-                        $('#GalleryAddForm').find('input').val('');
+                        $('#NewsAddForm').find('input').val('');
                         $('#NewsAddModal').modal('hide');
-                        $('#GalleryAddForm')[0].reset();
+                        $('#NewsAddForm')[0].reset();
                         alert(response.message);
-                        fetchBoats();
+                        // fetchBoats();
                        
                     }
                 }
@@ -245,47 +289,50 @@
 
         });
 
-        fetchBoats();
+        fetchData();
 
-        function fetchBoats() {
+        function fetchData() {
             $.ajax({
                 type: "GET",
-                url: "{{URL('/fetch-gallery')}}",
+                url: "{{URL('/fetch-news-feeds/')}}",
                 dataType: "json",
                 success: function (response) {
                     // console.log(response);
                     $('tbody').html("");
-                    $.each(response.images, function (key, item) { 
+                    $.each(response.news_feeds, function (key, item) { 
                         $('tbody').append('' 
-                        +'<tr><td> '+ item.image_name +' </td>' +
-                        '<td>'+'<img src=../uploads/gallery/'+item.image +' height="60px"></td>'+
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-success viewbtn-gallery btn-circle"><i class="fa fa-eye"></i></button>' +' </td>'+
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn-gallery btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-danger deletebtn-gallery btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>');
+                        +'<tr><td> '+ item.topic +' </td>' +
+                        '<td>'+'<img src=../uploads/news-feeds/'+item.image +' height="60px"></td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-success viewbtn-news-feeds btn-circle"><i class="fa fa-eye"></i></button>' +' </td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn-news-feeds btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-danger deletebtn-news-feeds btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>');
                     });
                 }
             });
         }
 
 
-        $(document).on('click', '.editbtn-gallery', function (e) {
-            var image_id = $(this).val();
-            var url = "{{URL('/edit-gallery')}}";
-            var dltUrl = url+"/"+image_id;
-            $('#GalleryEditModal').modal('show');
-            // alert(emp_id);
+        $(document).on('click', '.editbtn-news-feeds', function (e) {
+            var news_id = $(this).val();
+            var url = "{{URL('/edit-news-feeds')}}";
+            var dltUrl = url+"/"+news_id;
+            $('#NewsEditModal').modal('show');
+            // alert(news_id); 
             $.ajax({
                 type: "GET",
                 url: dltUrl,
                 success: function (response) {
-                    // console.log(response);
+                    console.log(response);
                     if (response.status == 404) {
                         // alert(response.message)
-                        $('#GalleryEditModal').modal('hide');
+                        $('#NewsEditModal').modal('hide');
                     }else{
 
-                        $('#g_e_imagename').val(response.images.image_name);
-                        $('#g_e_image_id').val(image_id);
+                        $('#e_n_newstopic').val(response.news_feeds.topic);
+                        $('#e_n_description_1').val(response.news_feeds.description_1);
+                        $('#e_n_description_2').val(response.news_feeds.description_2);
+                        $('#e_n_description_3').val(response.news_feeds.description_3);
+                        $('#e_n_id').val(news_id);
                        
                     }
                         
@@ -296,12 +343,12 @@
 
         //view model
 
-        $(document).on('click', '.viewbtn-gallery', function (e) {
-            var image_id = $(this).val();
-            var url = "{{URL('/edit-gallery/')}}";
-            var dltUrl = url+"/"+image_id;
-            $('#GalleryViewModal').modal('show');
-            // alert(emp_id);
+        $(document).on('click', '.viewbtn-news-feeds', function (e) {
+            var n_id = $(this).val();
+            var url = "{{URL('/edit-news-feeds/')}}";
+            var dltUrl = url+"/"+n_id;
+            $('#NewsViewModal').modal('show');
+            // alert(n_id);
             $.ajax({
                 type: "GET",
                 url: dltUrl,
@@ -309,12 +356,15 @@
                     console.log(response);
                     if (response.status == 404) {
                         alert(response.message)
-                        $('#GalleryViewModal').modal('hide');
+                        $('#NewsViewModal').modal('hide');
                     }else{
                         console.log(response);
 
-                        $("input[name='g_v_imagename']").val(response.images.image_name);
-                        $("input[name='g_v_image']").siblings("img").attr("src", "../uploads/gallery/"+response.images.image);
+                        $("input[name='v_n_newstopic']").val(response.news_feeds.topic);
+                        $("input[name='v_n_image']").siblings("img").attr("src", "../uploads/news-feeds/"+response.news_feeds.image);
+                        $("textarea[name='v_n_description_1']").val(response.news_feeds.description_1);
+                        $("textarea[name='v_n_description_2']").val(response.news_feeds.description_2);
+                        $("textarea[name='v_n_description_3']").val(response.news_feeds.description_3);
                         
 
                     }
@@ -326,12 +376,12 @@
 
 
 
-        $(document).on('submit','#GalleryEditForm', function (e) {
+        $(document).on('submit','#NewsEditForm', function (e) {
             e.preventDefault();
-            var id = $('#g_e_image_id').val();
-            let EditFormData = new FormData($('#GalleryEditForm')[0]);
+            var id = $('#e_n_id').val();
+            let EditFormData = new FormData($('#NewsEditForm')[0]);
 
-            var url = "{{URL('/update-gallery/')}}";
+            var url = "{{URL('/update-news-feeds/')}}";
             var dltUrl = url+"/"+id;
 
             $.ajax({
@@ -354,9 +404,9 @@
                         $('#edit_errorList').html("");
                         $('#edit_errorList').addClass('d-none');
                         alert(response.message);
-                        $('#GalleryEditForm')[0].reset();
-                        $('#GalleryEditModal').modal('hide');
-                        fetchBoats();
+                        $('#NewsEditForm')[0].reset();
+                        $('#NewsEditModal').modal('hide');
+                        fetchData();
                         
                     }
                 }
@@ -364,11 +414,11 @@
         });
 
 
-        $(document).on('click', '.deletebtn-gallery',function (e) {
+        $(document).on('click', '.deletebtn-news-feeds',function (e) {
             e.preventDefault();
 
             var id = $(this).val();
-            var url = "{{URL('/delete-gallery/')}}";
+            var url = "{{URL('/delete-news-feeds/')}}";
             var dltUrl = url+"/"+id;
 
             $.ajax({
@@ -380,7 +430,7 @@
                     alert(response.message);
                    }else if (response.status == 200){
                     alert(response.message);
-                    fetchBoats();
+                    fetchData();
                    }
 
                 }

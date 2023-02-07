@@ -7,16 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $table = 'projects';
+    protected $table = 'newsand_feeds';
     protected $fillable = [
-        'project_name',
-        'start',
-        'end',
-        'status',
-        'location',
+        'topic',
         'image',
-        'short_description',
-        'description',
-        
+        'description_1',
+        'description_2',
+        'description_3',
     ];
 }
