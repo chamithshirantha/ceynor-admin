@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FishingBoatController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\NewsandFeedsController;
 use App\Http\Controllers\PassengerBoatController;
 use App\Http\Controllers\ProjectController;
 use App\Models\FishingBoat;
@@ -29,7 +30,7 @@ Route::get('edit-gallery/{id}', [GalleryController::class, 'edit']);
 Route::post('update-gallery/{id}', [GalleryController::class, 'update']);
 Route::delete('delete-gallery/{id}', [GalleryController::class, 'destory']);
 
-//gallery routes
+//gallery projects
 
 Route::get('admin/projects',[ProjectController::class, 'index'])->name('projects');
 Route::post('admin/projects',[ProjectController::class, 'store']);
@@ -58,6 +59,17 @@ Route::get('fetch-passengerboats', [PassengerBoatController::class, 'fetchboat']
 Route::get('edit-passengerboats/{id}', [PassengerBoatController::class, 'edit']);
 Route::post('update-passengerboats/{id}', [PassengerBoatController::class, 'update']);
 Route::delete('delete-passengerboats/{id}', [PassengerBoatController::class, 'destory']);
+
+
+
+// news and feeds routes
+
+Route::get('admin/news&feeds',[NewsandFeedsController::class, 'index'])->name('news&feeds');
+Route::post('admin/news&feeds',[NewsandFeedsController::class, 'store']);
+Route::get('fetch-news&feeds', [NewsandFeedsController::class, 'fetchboat']);
+Route::get('edit-news&feeds/{id}', [NewsandFeedsController::class, 'edit']);
+Route::post('update-news&feeds/{id}', [NewsandFeedsController::class, 'update']);
+Route::delete('delete-news&feeds/{id}', [NewsandFeedsController::class, 'destory']);
 
 
 

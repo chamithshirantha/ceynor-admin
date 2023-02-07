@@ -61,7 +61,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">News & Feeds</a>
+                            <a class="nav-link {{ 'admin/news&feeds' == request()->path() ? 'active' : '' }}" href="{{ route('news&feeds') }}">News & Feeds</a>
                         </li>
 
                         <li class="nav-item">

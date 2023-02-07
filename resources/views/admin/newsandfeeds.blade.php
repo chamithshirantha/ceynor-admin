@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <div class="container">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#GalleryAddModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewsAddModal">
         Add New
       </button>
 
@@ -13,7 +13,7 @@
 
     <!-- add Modal -->
                     
-    <div class="modal fade" id="GalleryAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="NewsAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -234,7 +234,7 @@
                         $('#save_errorList').addClass('d-none');
                         // this.reset();
                         $('#GalleryAddForm').find('input').val('');
-                        $('#GalleryAddModal').modal('hide');
+                        $('#NewsAddModal').modal('hide');
                         $('#GalleryAddForm')[0].reset();
                         alert(response.message);
                         fetchBoats();

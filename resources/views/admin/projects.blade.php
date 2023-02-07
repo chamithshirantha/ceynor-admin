@@ -17,7 +17,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Gallery</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -108,7 +108,7 @@
                 <form id="ProjectEditForm" class="row g-3" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                <input type="text" id="p_e_project_id" name="p_e_project_id">
+                <input type="hidden" id="p_e_project_id" name="p_e_project_id">
 
                 <div class="col-md-6">
                     <label class="form-label">Project Name</label>
@@ -256,7 +256,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Gallery</div> 
+                <div class="card-header">Projects</div> 
                 <div class="card-body">
                     <!-- Table Start -->
                     <div class="container">
