@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class OtherProducts extends Model
 {
-    protected $table = 'projects';
+    protected $table = 'other_products';
     protected $fillable = [
-        'project_name',
-        'start',
-        'end',
-        'status',
-        'location',
+        'product_name',
         'image',
+        'length',
+        'width',
+        'height',
+        'price',
         'short_description',
-        'description',
+        'description',   
     ];
 }

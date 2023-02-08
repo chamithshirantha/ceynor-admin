@@ -3,6 +3,7 @@
 use App\Http\Controllers\FishingBoatController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NewsandFeedsController;
+use App\Http\Controllers\OtherProductsController;
 use App\Http\Controllers\PassengerBoatController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TendersandVacanciesController;
@@ -61,6 +62,16 @@ Route::get('fetch-passengerboats', [PassengerBoatController::class, 'fetchboat']
 Route::get('edit-passengerboats/{id}', [PassengerBoatController::class, 'edit']);
 Route::post('update-passengerboats/{id}', [PassengerBoatController::class, 'update']);
 Route::delete('delete-passengerboats/{id}', [PassengerBoatController::class, 'destory']);
+
+
+// other product routes
+
+Route::get('admin/otherproducts',[OtherProductsController::class, 'index'])->name('otherproducts');
+Route::post('admin/otherproducts',[OtherProductsController::class, 'store']);
+Route::get('fetch-otherproducts', [OtherProductsController::class, 'fetchData']);
+Route::get('edit-otherproducts/{id}', [OtherProductsController::class, 'edit']);
+Route::post('update-otherproducts/{id}', [OtherProductsController::class, 'update']);
+Route::delete('delete-otherproducts/{id}', [OtherProductsController::class, 'destory']);
 
 
 

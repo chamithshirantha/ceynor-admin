@@ -57,7 +57,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Other Products</a>
+                            <a class="nav-link {{ 'admin/otherproducts' == request()->path() ? 'active' : '' }}" href="{{ route('otherproducts') }}">Other Products</a>
                         </li>
 
                         <li class="nav-item">
