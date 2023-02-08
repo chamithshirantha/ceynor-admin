@@ -70,7 +70,7 @@
 
 
 
- <!-- edit function still develop -->
+ 
 
 
     <!-- edit Modal -->
@@ -87,36 +87,36 @@
             <div class="modal-body">
                 <ul class="alert alert-warning d-none" id="edit_errorList"></ul>
 
-                <form id="NewsEditForm" class="row g-3" method="POST" enctype="multipart/form-data">
+                <form id="TenderEditForm" class="row g-3" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                <input type="hidden" id="e_n_id" name="e_n_id">
+                <input type="hidden" id="e_t_id" name="e_t_id">
 
                 <div class="col-md-8">
                     <label class="form-label">Topic</label>
-                    <input type="text" name="e_n_newstopic" id="e_n_newstopic" class="form-control">
+                    <input type="text" name="e_t_tendertitle" id="e_t_tendertitle" class="form-control">
                 </div>
 
                 <div class="col-md-4">
-                    <label for="image" class="form-label">Choose Image</label>
-                    <input class="form-control" type="file" name="e_n_image" id="e_n_image">
-                    <small class="form-text text-muted">Please choose image size</small>
+                    <label for="image" class="form-label">Choose Attachment</label>
+                    <input class="form-control" type="file" name="e_t_file" id="e_t_file">
+                    {{-- <small class="form-text text-muted">Please choose image size</small> --}}
                   </div>
 
 
                 <div class="form-group">
                     <label for="description">Description 01</label>
-                    <textarea class="form-control" name="e_n_description_1"  id="e_n_description_1" rows="3"></textarea>
+                    <textarea class="form-control" name="e_t_description_1"  id="e_t_description_1" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description 02</label>
-                    <textarea class="form-control" name="e_n_description_2" id="e_n_description_2"  rows="5"></textarea>
+                    <textarea class="form-control" name="e_t_description_2" id="e_t_description_2"  rows="5"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description 03</label>
-                    <textarea class="form-control" name="e_n_description_3" id="e_n_description_3" rows="4"></textarea>
+                    <textarea class="form-control" name="e_t_description_3" id="e_t_description_3" rows="4"></textarea>
                 </div>
 
                 
@@ -136,7 +136,7 @@
 
     <!-- view Modal Start-->
                     
-    <div class="modal fade" id="NewsViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="TenderViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -151,34 +151,34 @@
                 {{-- <form id="GalleryBoatViewForm" class="row g-3" method="POST" enctype="multipart/form-data"> --}}
                     @csrf
 
-                <input type="hidden" id="v_n_id" name="v_n_id" disabled>
+                <input type="hidden" id="v_t_id" name="v_t_id" disabled>
 
                 <div class="col-md-12">
                     <label class="form-label">Topic</label>
-                    <input type="text" name="v_n_newstopic" id="v_n_newstopic" class="form-control" disabled>
+                    <input type="text" name="v_t_newstopic" id="v_t_newstopic" class="form-control" disabled>
                 </div>
 
                 <div class="col-md-4">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="hidden" name="v_n_image" disabled>
+                    <label for="attachment" class="form-label">Attachment</label>
+                    <input type="hidden" name="v_t_file" disabled>
                 
-                    <img src="" class="img-fluid"  name="v_n_image"  width="" height="100">
+                    <iframe src="" height="200" name="v_t_file" width="300" title="Iframe Example"></iframe>
                   </div>
 
 
                 <div class="form-group">
                     <label for="description">Description 01</label>
-                    <textarea class="form-control" name="v_n_description_1"  id="v_n_description_1" rows="3" disabled></textarea>
+                    <textarea class="form-control" name="v_t_description_1"  id="v_t_description_1" rows="3" disabled></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description 02</label>
-                    <textarea class="form-control" name="v_n_description_2" id="v_n_description_2"  rows="5" disabled></textarea>
+                    <textarea class="form-control" name="v_t_description_2" id="v_t_description_2"  rows="5" disabled></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description 03</label>
-                    <textarea class="form-control" name="v_n_description_3" id="v_n_description_3" rows="4" disabled></textarea>
+                    <textarea class="form-control" name="v_t_description_3" id="v_t_description_3" rows="4" disabled></textarea>
                 </div>
 
                 
@@ -314,7 +314,7 @@
 
         $(document).on('click', '.editbtn-tenders-vacancies', function (e) {
             var news_id = $(this).val();
-            var url = "{{URL('/edit-tenders-vacancies')}}";
+            var url = "{{URL('edit-tenders-vacancies')}}";
             var dltUrl = url+"/"+news_id;
             $('#TendersEditModal').modal('show');
             // alert(news_id); 
@@ -328,11 +328,11 @@
                         $('#TendersEditModal').modal('hide');
                     }else{
 
-                        $('#e_n_newstopic').val(response.news_feeds.topic);
-                        $('#e_n_description_1').val(response.news_feeds.description_1);
-                        $('#e_n_description_2').val(response.news_feeds.description_2);
-                        $('#e_n_description_3').val(response.news_feeds.description_3);
-                        $('#e_n_id').val(news_id);
+                        $('#e_t_tendertitle').val(response.tenders_vacancies.topic);
+                        $('#e_t_description_1').val(response.tenders_vacancies.description_1);
+                        $('#e_t_description_2').val(response.tenders_vacancies.description_2);
+                        $('#e_t_description_3').val(response.tenders_vacancies.description_3);
+                        $('#e_t_id').val(news_id);
                         fetchData();
                        
                     }
@@ -348,7 +348,7 @@
             var n_id = $(this).val();
             var url = "{{URL('/edit-tenders-vacancies/')}}";
             var dltUrl = url+"/"+n_id;
-            $('#NewsViewModal').modal('show');
+            $('#TenderViewModal').modal('show');
             // alert(n_id);
             $.ajax({
                 type: "GET",
@@ -357,15 +357,15 @@
                     console.log(response);
                     if (response.status == 404) {
                         alert(response.message)
-                        $('#NewsViewModal').modal('hide');
+                        $('#TenderViewModal').modal('hide');
                     }else{
                         console.log(response);
 
-                        $("input[name='v_n_newstopic']").val(response.news_feeds.topic);
-                        $("input[name='v_n_image']").siblings("img").attr("src", "../uploads/tenders-vacancies/"+response.news_feeds.image);
-                        $("textarea[name='v_n_description_1']").val(response.news_feeds.description_1);
-                        $("textarea[name='v_n_description_2']").val(response.news_feeds.description_2);
-                        $("textarea[name='v_n_description_3']").val(response.news_feeds.description_3);
+                        $("input[name='v_t_newstopic']").val(response.tenders_vacancies.topic);
+                        $("input[name='v_t_file']").siblings("iframe").attr("src", "../uploads/tenders-vacancies/"+response.tenders_vacancies.file);
+                        $("textarea[name='v_t_description_1']").val(response.tenders_vacancies.description_1);
+                        $("textarea[name='v_t_description_2']").val(response.tenders_vacancies.description_2);
+                        $("textarea[name='v_t_description_3']").val(response.tenders_vacancies.description_3);
                         fetchData();
                         
 
@@ -378,10 +378,10 @@
 
 
 
-        $(document).on('submit','#NewsEditForm', function (e) {
+        $(document).on('submit','#TenderEditForm', function (e) {
             e.preventDefault();
-            var id = $('#e_n_id').val();
-            let EditFormData = new FormData($('#NewsEditForm')[0]);
+            var id = $('#e_t_id').val();
+            let EditFormData = new FormData($('#TenderEditForm')[0]);
 
             var url = "{{URL('/update-tenders-vacancies/')}}";
             var dltUrl = url+"/"+id;
@@ -406,7 +406,7 @@
                         $('#edit_errorList').html("");
                         $('#edit_errorList').addClass('d-none');
                         alert(response.message);
-                        $('#NewsEditForm')[0].reset();
+                        $('#TenderEditForm')[0].reset();
                         $('#TendersEditModal').modal('hide');
                         fetchData();
                         
