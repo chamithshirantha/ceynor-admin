@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <div class="container">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewsAddModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TendersAddModal">
         Add New
       </button>
 
@@ -13,11 +13,11 @@
 
     <!-- add Modal -->
                     
-    <div class="modal fade" id="NewsAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="TendersAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add News & Feeds</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Tenders / Vacancies</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -25,17 +25,17 @@
             <div class="modal-body">
                 <ul class="alert alert-warning d-none" id="save_errorList"></ul>
 
-                <form id="NewsAddForm" class="row g-3" method="POST" enctype="multipart/form-data">
+                <form id="TenderAddForm" class="row g-3" method="POST" enctype="multipart/form-data">
                     @csrf
 
                 <div class="col-md-8">
                     <label class="form-label">Title</label>
-                    <input type="text" name="newstopic" class="form-control">
+                    <input type="text" name="tendertitle" class="form-control">
                 </div>
 
                 <div class="col-md-4">
-                    <label for="image" class="form-label">Choose Image</label>
-                    <input class="form-control" type="file" name="image">
+                    <label for="image" class="form-label">Choose File</label>
+                    <input class="form-control" type="file" name="file">
                     <small class="form-text text-muted">Please choose image size</small>
                   </div>
 
@@ -70,12 +70,12 @@
 
 
 
-
+ <!-- edit function still develop -->
 
 
     <!-- edit Modal -->
                     
-    <div class="modal fade" id="NewsEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="TendersEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -93,7 +93,7 @@
                 <input type="hidden" id="e_n_id" name="e_n_id">
 
                 <div class="col-md-8">
-                    <label class="form-label">Title</label>
+                    <label class="form-label">Topic</label>
                     <input type="text" name="e_n_newstopic" id="e_n_newstopic" class="form-control">
                 </div>
 
@@ -154,7 +154,7 @@
                 <input type="hidden" id="v_n_id" name="v_n_id" disabled>
 
                 <div class="col-md-12">
-                    <label class="form-label">Title</label>
+                    <label class="form-label">Topic</label>
                     <input type="text" name="v_n_newstopic" id="v_n_newstopic" class="form-control" disabled>
                 </div>
 
@@ -202,7 +202,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">News & Feeds</div> 
+                <div class="card-header">Tenders / Vacancies</div> 
                 <div class="card-body">
                     <!-- Table Start -->
                     <div class="container">
@@ -212,7 +212,7 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Title</th>
+                                                <th>Topic</th>
                                                 <th>Image</th>
                                                 <th colspan="3">Action</th>
                                             </tr>
@@ -255,14 +255,14 @@
         });
 
 
-        $(document).on('submit', '#NewsAddForm', function (e) {
+        $(document).on('submit', '#TenderAddForm', function (e) {
             e.preventDefault();
 
-            let formData = new FormData($('#NewsAddForm')[0]);
+            let formData = new FormData($('#TenderAddForm')[0]);
 
             $.ajax({
                 type: "POST",
-                url: "{{URL('/admin/news-feeds')}}",
+                url: "{{URL('/admin/tenders-vacancies')}}",
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -277,9 +277,9 @@
                         $('#save_errorList').html("");
                         $('#save_errorList').addClass('d-none');
                         // this.reset();
-                        $('#NewsAddForm').find('input').val('');
-                        $('#NewsAddModal').modal('hide');
-                        $('#NewsAddForm')[0].reset();
+                        $('#TenderAddForm').find('input').val('');
+                        $('#TendersAddModal').modal('hide');
+                        $('#TenderAddForm')[0].reset();
                         alert(response.message);
                         fetchData();
                        
@@ -294,29 +294,29 @@
         function fetchData() {
             $.ajax({
                 type: "GET",
-                url: "{{URL('/fetch-news-feeds/')}}",
+                url: "{{URL('/fetch-tenders-vacancies/')}}",
                 dataType: "json",
                 success: function (response) {
                     // console.log(response);
                     $('tbody').html("");
-                    $.each(response.news_feeds, function (key, item) { 
+                    $.each(response.tenders_vacancies, function (key, item) { 
                         $('tbody').append('' 
                         +'<tr><td> '+ item.topic +' </td>' +
-                        '<td>'+'<img src=../uploads/news-feeds/'+item.image +' height="60px"></td>'+
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-success viewbtn-news-feeds btn-circle"><i class="fa fa-eye"></i></button>' +' </td>'+
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn-news-feeds btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-danger deletebtn-news-feeds btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>');
+                        '<td>'+'<img src=../uploads/tenders-vacancies/pdf.png height="60px"></td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-success viewbtn-tenders-vacancies btn-circle"><i class="fa fa-eye"></i></button>' +' </td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn-tenders-vacancies btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-danger deletebtn-tenders-vacancies btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>');
                     });
                 }
             });
         }
 
 
-        $(document).on('click', '.editbtn-news-feeds', function (e) {
+        $(document).on('click', '.editbtn-tenders-vacancies', function (e) {
             var news_id = $(this).val();
-            var url = "{{URL('/edit-news-feeds')}}";
+            var url = "{{URL('/edit-tenders-vacancies')}}";
             var dltUrl = url+"/"+news_id;
-            $('#NewsEditModal').modal('show');
+            $('#TendersEditModal').modal('show');
             // alert(news_id); 
             $.ajax({
                 type: "GET",
@@ -325,7 +325,7 @@
                     console.log(response);
                     if (response.status == 404) {
                         // alert(response.message)
-                        $('#NewsEditModal').modal('hide');
+                        $('#TendersEditModal').modal('hide');
                     }else{
 
                         $('#e_n_newstopic').val(response.news_feeds.topic);
@@ -344,9 +344,9 @@
 
         //view model
 
-        $(document).on('click', '.viewbtn-news-feeds', function (e) {
+        $(document).on('click', '.viewbtn-tenders-vacancies', function (e) {
             var n_id = $(this).val();
-            var url = "{{URL('/edit-news-feeds/')}}";
+            var url = "{{URL('/edit-tenders-vacancies/')}}";
             var dltUrl = url+"/"+n_id;
             $('#NewsViewModal').modal('show');
             // alert(n_id);
@@ -362,7 +362,7 @@
                         console.log(response);
 
                         $("input[name='v_n_newstopic']").val(response.news_feeds.topic);
-                        $("input[name='v_n_image']").siblings("img").attr("src", "../uploads/news-feeds/"+response.news_feeds.image);
+                        $("input[name='v_n_image']").siblings("img").attr("src", "../uploads/tenders-vacancies/"+response.news_feeds.image);
                         $("textarea[name='v_n_description_1']").val(response.news_feeds.description_1);
                         $("textarea[name='v_n_description_2']").val(response.news_feeds.description_2);
                         $("textarea[name='v_n_description_3']").val(response.news_feeds.description_3);
@@ -383,7 +383,7 @@
             var id = $('#e_n_id').val();
             let EditFormData = new FormData($('#NewsEditForm')[0]);
 
-            var url = "{{URL('/update-news-feeds/')}}";
+            var url = "{{URL('/update-tenders-vacancies/')}}";
             var dltUrl = url+"/"+id;
 
             $.ajax({
@@ -407,7 +407,7 @@
                         $('#edit_errorList').addClass('d-none');
                         alert(response.message);
                         $('#NewsEditForm')[0].reset();
-                        $('#NewsEditModal').modal('hide');
+                        $('#TendersEditModal').modal('hide');
                         fetchData();
                         
                     }
@@ -416,11 +416,11 @@
         });
 
 
-        $(document).on('click', '.deletebtn-news-feeds',function (e) {
+        $(document).on('click', '.deletebtn-tenders-vacancies',function (e) {
             e.preventDefault();
 
             var id = $(this).val();
-            var url = "{{URL('/delete-news-feeds/')}}";
+            var url = "{{URL('/delete-tenders-vacancies/')}}";
             var dltUrl = url+"/"+id;
 
             $.ajax({

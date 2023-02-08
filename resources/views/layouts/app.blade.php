@@ -65,7 +65,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tenders / Vacancies</a>
+                            <a class="nav-link {{ 'admin/tenders-vacancies' == request()->path() ? 'active' : '' }}" href="{{ route('tenders-vacancies') }}">Tenders / Vacancies</a>
                         </li>
 
                         

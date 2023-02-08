@@ -5,7 +5,9 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NewsandFeedsController;
 use App\Http\Controllers\PassengerBoatController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TendersandVacanciesController;
 use App\Models\FishingBoat;
+use App\Models\TendersandVacancies;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +72,16 @@ Route::get('fetch-news-feeds', [NewsandFeedsController::class, 'fetchData']);
 Route::get('edit-news-feeds/{id}', [NewsandFeedsController::class, 'edit']);
 Route::post('update-news-feeds/{id}', [NewsandFeedsController::class, 'update']);
 Route::delete('delete-news-feeds/{id}', [NewsandFeedsController::class, 'destory']);
+
+
+// tenders routes
+
+Route::get('admin/tenders-vacancies',[TendersandVacanciesController::class, 'index'])->name('tenders-vacancies');
+Route::post('admin/tenders-vacancies',[TendersandVacanciesController::class, 'store']);
+Route::get('fetch-tenders-vacancies', [TendersandVacanciesController::class, 'fetchData']);
+Route::get('edit-tenders-vacancies/{id}', [TendersandVacanciesController::class, 'edit']);
+Route::post('update-tenders-vacancies/{id}', [TendersandVacanciesController::class, 'update']);
+Route::delete('delete-tenders-vacancies/{id}', [TendersandVacanciesController::class, 'destory']);
 
 
 
