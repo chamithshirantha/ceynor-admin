@@ -17,7 +17,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Passenger Boat</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add Other Product</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -85,8 +85,6 @@
 
 
 
-
-<!-- edit Modal height width length price add to the form -->
     <!-- edit Modal -->
                     
     <div class="modal fade" id="OtherproductEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,31 +99,51 @@
             <div class="modal-body">
                 <ul class="alert alert-warning d-none" id="edit_errorList"></ul>
 
-                <form id="PassengerBoatEditForm" class="row g-3" method="POST" enctype="multipart/form-data">
+                <form id="OtherproductEditForm" class="row g-3" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                <input type="hidden" id="p_e_pro_id" name="p_e_pro_id">
+                <input type="hidden" id="o_e_id" name="o_e_id">
 
                 <div class="col-md-6">
                     <label class="form-label">Product Name</label>
-                    <input type="text" name="productname" id="p_e_productname" class="form-control">
+                    <input type="text" name="o_e_productname" id="o_e_productname" class="form-control">
                 </div>
 
 
                 <div class="col-md-6">
                   <label for="image" class="form-label">Choose Image</label>
-                  <input class="form-control" type="file" name="image">
+                  <input class="form-control" type="file" name="o_e_image">
                   <small class="form-text text-muted">Please choose image size</small>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Length</label>
+                    <input type="text"  name="o_e_length" id="o_e_length" class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Width</label>
+                    <input type="text" name="o_e_width" id="o_e_width" class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Height</label>
+                    <input type="text" name="o_e_height" id="o_e_height" class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Price</label>
+                    <input type="text" name="o_e_price" id="o_e_price" class="form-control">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Short Description</label>
-                    <textarea class="form-control" name="shortdescription" id="p_e_shortdescription" rows="3"></textarea>
+                    <textarea class="form-control" name="o_e_shortdescription" id="o_e_shortdescription" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control" name="description" id="p_e_description" rows="6"></textarea>
+                    <textarea class="form-control" name="o_e_description" id="o_e_description" rows="6"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -143,7 +161,7 @@
 
     <!-- view Modal Start-->
                     
-    <div class="modal fade" id="PassengerBoatViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="OtherproductViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -155,95 +173,50 @@
             <div class="modal-body">
                 <ul class="alert alert-warning d-none" id="edit_errorList"></ul>
 
-                <form id="PassengerBoatViewForm" class="row g-3" method="POST" enctype="multipart/form-data">
+                <form id="PassengerBoatViewForm" class="row g-3" method="POST" enctype="multipart/form-data" >
                     @csrf
 
-                <input type="hidden"  name="p_v_boat_id">
-
                 <div class="col-md-6">
-                    <label class="form-label">Boat Name</label>
-                    <input type="text" name="p_v_boatname" class="form-control" disabled>
+                    <label class="form-label">Product Name</label>
+                    <input type="text" name="o_v_productname" id="o_v_productname" class="form-control" disabled>
                 </div>
 
 
                 <div class="col-md-6">
                   <label for="image" class="form-label">Choose Image</label>
-                  {{-- <input class="form-control" type="file" name="p_v_image"> --}}
-
-                  <input type="hidden" name="p_v_image">
+                  <input type="hidden" name="o_v_image" disabled>
                 
-                  <img src="" class="img-fluid"  name="p_v_image"  width="" height="100" disabled>
+                    <img src="" class="img-fluid"  name="o_v_image"  width="" height="100">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Length</label>
+                    <input type="text"  name="o_v_length" id="o_v_length" class="form-control" disabled>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Width</label>
+                    <input type="text" name="o_v_width" id="o_v_width" class="form-control" disabled>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Height</label>
+                    <input type="text" name="o_v_height" id="o_v_height" class="form-control" disabled>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Price</label>
+                    <input type="text" name="o_v_price" id="o_v_price" class="form-control" disabled>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Short Description</label>
-                    <textarea class="form-control" name="p_v_discription" rows="3" disabled></textarea>
+                    <textarea class="form-control" name="o_v_shortdescription" id="o_v_shortdescription" rows="3" disabled></textarea>
                 </div>
 
-                <div class="col-md-12">
-                    <label for="lastname">Specification</label>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="length" class="form-label">Length</label>
-                    <input type="text" class="form-control" name="p_v_length" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="Beam" class="form-label">Beam</label>
-                    <input type="text" class="form-control" name="p_v_beam" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="length" class="form-label">Draft</label>
-                    <input type="text" class="form-control" name="p_v_draft" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="Main Hull Beam" class="form-label">Main Hull Beam</label>
-                    <input type="text" class="form-control" name="p_v_mainhullbeam" disabled>
-                </div>
-
-
-                <div class="col-md-3">
-                    <label for="fuel" class="form-label">Fuel</label>
-                    <input type="text" class="form-control" name="p_v_fuel" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="water" class="form-label">Water</label>
-                    <input type="text" class="form-control" name="p_v_water" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="fuel" class="form-label">Seating Capacity</label>
-                    <input type="text" class="form-control" name="p_v_seating_capacity" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="Speed" class="form-label">Speed</label>
-                    <input type="text" class="form-control" name="p_v_speed" disabled>
-                </div>
-
-
-                <div class="col-md-3">
-                    <label for="Beds" class="form-label">Beds</label>
-                    <input type="text" class="form-control" name="p_v_beds" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="Hull Type" class="form-label">Hull Type</label>
-                    <input type="text" class="form-control" name="p_v_hulltype" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="fish hold capacity" class="form-label">Fish hold capacity</label>
-                    <input type="text" class="form-control" name="p_v_fish_hold_capacity" disabled>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="text" class="form-control" name="p_v_price" disabled>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="o_v_description" id="o_v_description" rows="6" disabled></textarea>
                 </div>     
             </div>
             <div class="modal-footer">
@@ -399,47 +372,40 @@
                         // '<td>'+ item.hull_type +' </td>'+
                         // '<td>'+ item.fish_hold_capacity +' </td>'+
                         
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-success viewbtn-passenger btn-circle"><i class="fa fa-eye"></i></button>' +' </td>'+
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn-passenger btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
-                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-danger deletebtn-passenger btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>');
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-success viewbtn-otherproduct btn-circle"><i class="fa fa-eye"></i></button>' +' </td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn-otherproduct btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-danger deletebtn-otherproduct btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>');
                     });
                 }
             });
         }
 
 
-        $(document).on('click', '.editbtn-passenger', function (e) {
-            var boat_id = $(this).val();
-            var url = "{{URL('/edit-passengerboats/')}}";
-            var dltUrl = url+"/"+boat_id;
+        $(document).on('click', '.editbtn-otherproduct', function (e) {
+            var pro_id = $(this).val();
+            var url = "{{URL('/edit-otherproducts/')}}";
+            var dltUrl = url+"/"+pro_id;
             $('#OtherproductEditModal').modal('show');
-            // alert(emp_id);
+            // alert(pro_id);
             $.ajax({
                 type: "GET",
                 url: dltUrl,
                 success: function (response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response.status == 404) {
                         alert(response.message)
                         $('#OtherproductEditModal').modal('hide');
                     }else{
 
-                        $('#p_e_boatname').val(response.boat.boat_name);
-                        // $('#p_e_image').siblings("img").attr("src", "../uploads/passenger/"+response.boat.image);
-                        $('#p_e_discription').val(response.boat.short_description);
-                        $('#p_e_length').val(response.boat.length);
-                        $('#p_e_beam').val(response.boat.beam);
-                        $('#p_e_draft').val(response.boat.draft);
-                        $('#p_e_mainhullbeam').val(response.boat.main_hull_beam);
-                        $('#p_e_fuel').val(response.boat.fuel);
-                        $('#p_e_water').val(response.boat.water);
-                        $('#p_e_seating_capacity').val(response.boat.seating_capacity);
-                        $('#p_e_speed').val(response.boat.speed);
-                        $('#p_e_beds').val(response.boat.beds);
-                        $('#p_e_hulltype').val(response.boat.hull_type);
-                        $('#p_e_fish_hold_capacity').val(response.boat.fish_hold_capacity);
-                        $('#p_e_price').val(response.boat.price);
-                        $('#p_e_boat_id').val(boat_id);
+                        $('#o_e_productname').val(response.other_pro.product_name);
+                        // $('#p_e_image').siblings("img").attr("src", "../uploads/otherproduct/"+response.boat.image);
+                        $('#o_e_length').val(response.other_pro.length);
+                        $('#o_e_width').val(response.other_pro.width);
+                        $('#o_e_height').val(response.other_pro.height);
+                        $('#o_e_price').val(response.other_pro.price);
+                        $('#o_e_shortdescription').val(response.other_pro.short_description);
+                        $('#o_e_description').val(response.other_pro.description);
+                        $('#o_e_id').val(pro_id);
 
                     }
                         
@@ -450,11 +416,11 @@
 
         //view model
 
-        $(document).on('click', '.viewbtn-passenger', function (e) {
-            var boat_id = $(this).val();
-            var url = "{{URL('/edit-passengerboats/')}}";
-            var dltUrl = url+"/"+boat_id;
-            $('#PassengerBoatViewModal').modal('show');
+        $(document).on('click', '.viewbtn-otherproduct', function (e) {
+            var pro_id = $(this).val();
+            var url = "{{URL('/edit-otherproducts/')}}";
+            var dltUrl = url+"/"+pro_id;
+            $('#OtherproductViewModal').modal('show');
             // alert(emp_id);
             $.ajax({
                 type: "GET",
@@ -463,27 +429,18 @@
                     console.log(response);
                     if (response.status == 404) {
                         alert(response.message)
-                        $('#PassengerBoatViewModal').modal('hide');
+                        $('#OtherproductViewModal').modal('hide');
                     }else{
                         console.log(response);
 
-                        $("input[name='p_v_boatname']").val(response.boat.boat_name);
-                        $("textarea[name='p_v_discription']").val(response.boat.short_description);
-                        // $('#p_v_image').val(response.boat.image);
-                        $("input[name='p_v_image']").siblings("img").attr("src", "../uploads/passengerboats/"+response.boat.image);
-                        $("input[name='p_v_length']").val(response.boat.length);
-                        $("input[name='p_v_beam']").val(response.boat.beam);
-                        $("input[name='p_v_draft']").val(response.boat.draft);
-                        $("input[name='p_v_mainhullbeam']").val(response.boat.main_hull_beam);
-                        $("input[name='p_v_fuel']").val(response.boat.fuel);
-                        $("input[name='p_v_water']").val(response.boat.water);
-                        $("input[name='p_v_seating_capacity']").val(response.boat.seating_capacity);
-                        $("input[name='p_v_speed']").val(response.boat.speed);
-                        $("input[name='p_v_beds']").val(response.boat.beds);
-                        $("input[name='p_v_hulltype']").val(response.boat.hull_type);
-                        $("input[name='p_v_fish_hold_capacity']").val(response.boat.fish_hold_capacity);
-                        $("input[name='p_v_price']").val(response.boat.price);
-                        $("input[name='p_v_boat_id']").val(boat_id);
+                        $("input[name='o_v_productname']").val(response.other_pro.product_name);
+                        $("input[name='o_v_image']").siblings("img").attr("src", "../uploads/otherproducts/"+response.other_pro.image);
+                        $("input[name='o_v_length']").val(response.other_pro.length);
+                        $("input[name='o_v_width']").val(response.other_pro.width);
+                        $("input[name='o_v_height']").val(response.other_pro.height);
+                        $("input[name='o_v_price']").val(response.other_pro.price);
+                        $("textarea[name='o_v_shortdescription']").val(response.other_pro.short_description);
+                        $("textarea[name='o_v_description']").val(response.other_pro.description);
 
                     }
                         
@@ -494,12 +451,12 @@
 
 
 
-        $(document).on('submit','#PassengerBoatEditForm', function (e) {
+        $(document).on('submit','#OtherproductEditForm', function (e) {
             e.preventDefault();
-            var id = $('#p_e_boat_id').val();
-            let EditFormData = new FormData($('#PassengerBoatEditForm')[0]);
+            var id = $('#o_e_id').val();
+            let EditFormData = new FormData($('#OtherproductEditForm')[0]);
 
-            var url = "{{URL('/update-passengerboats/')}}";
+            var url = "{{URL('/update-otherproducts/')}}";
             var dltUrl = url+"/"+id;
 
             $.ajax({
@@ -522,7 +479,7 @@
                         $('#edit_errorList').html("");
                         $('#edit_errorList').addClass('d-none');
                         alert(response.message);
-                        $('#PassengerBoatEditForm')[0].reset();
+                        $('#OtherproductEditForm')[0].reset();
                         $('#OtherproductEditModal').modal('hide');
                         fetchBoats();
                         
@@ -532,11 +489,11 @@
         });
 
 
-        $(document).on('click', '.deletebtn-passenger',function (e) {
+        $(document).on('click', '.deletebtn-otherproduct',function (e) {
             e.preventDefault();
 
             var id = $(this).val();
-            var url = "{{URL('/delete-passengerboats/')}}";
+            var url = "{{URL('/delete-otherproducts/')}}";
             var dltUrl = url+"/"+id;
 
             $.ajax({
